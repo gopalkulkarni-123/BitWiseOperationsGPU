@@ -20,7 +20,7 @@ To evaluate the effectiveness of Tensor Cores and bitwise operations on GPUs usi
 
 ![Outer product](https://github.com/gopalkulkarni-123/BitWiseOperationsGPU/blob/master/Images/Screenshot%20from%202025-06-24%2012-09-34.png)
 
-##Results
+## Results
 The compute time is measured for all three cases for 10 iterations each and the average is calculated. 
 ![Results](https://github.com/gopalkulkarni-123/BitWiseOperationsGPU/blob/master/Images/Screenshot%20from%202025-06-24%2013-33-10.png)
 
