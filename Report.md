@@ -19,4 +19,4 @@ Bit packing is a technique used to store multiple smaller data values within a s
 To test the effectiveness of tensor cores and bitwise operations on GPUs with bit-packed representations, a baseline example is used as a reference. For all three experiments, two vectors of logarithmically increasing lengths are used, starting from 10 to 100000, and bitwise operations are performed between them. The computation time is measured and compared with the other cases. 
 Tensor cores are very specifically designed to perform matrix multiplications and additions, making the element-wise operations tricky. To leverage the tensor cores, the CUTLASS library is used and to perform bitwise operations (AND in particular), an outer product of the two vectors is performed, and the diagonal elements of the resultant are considered as the result.
 
-![Outer product] (https://raw.githubusercontent.com/gopalkulkarni-123/BitWiseOperationsGPU/refs/heads/master/Images/0_JdJLlG5wiW7rpkaD.webp)
+![Outer product] (https://github.com/gopalkulkarni-123/BitWiseOperationsGPU/blob/master/Images/Screenshot%20from%202025-06-24%2012-09-34.png)
