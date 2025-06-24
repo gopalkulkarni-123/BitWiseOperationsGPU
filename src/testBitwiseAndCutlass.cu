@@ -10,12 +10,12 @@ int main() {
     using ElementC = int32_t;
 
     // Vector size
-    int M_arr[1] = {100000}; // 6x6 flattened
+    int M_arr[5] = {10, 100, 1000, 10000}; // 6x6 flattened
 
     std::cout << "vector size,iteration,time \n";
     float sum = 0.0f, avg = 0.0f;
-    for (int iter = 0; iter < 11; ++iter){
-        for (int j = 0; j < 1; ++j){
+    for (int j = 0; j < 4; ++j){ //
+        for (int iter = 0; iter < 11; ++iter){
             // A: (M x 1), B: (1 x M), C: (M x M)
             cutlass::HostTensor<ElementA, cutlass::layout::ColumnMajor> A({M_arr[j], 1});
             cutlass::HostTensor<ElementB, cutlass::layout::RowMajor> B({1, M_arr[j]});
@@ -68,16 +68,19 @@ int main() {
                 return -1;
             }
 
-            //std::cout << "GEMM time: " << elapsed.count() << " ms\n";
+            std::cout << "GEMM time: " << M_arr[j] << " , " << elapsed.count() << " ms\n";
             if(iter != 0){
             
             sum += elapsed.count();
             //std::cout << M_arr[j]<< ","  << iter << "," << elapsed.count() << "ms\n";
             }
         }
+        avg = sum/10;
+        std::cout << M_arr[j]<< ","  << avg << "ms\n";
+        avg = 0;
+        sum = 0;
     }
-    avg = sum/10;
-    std::cout << M_arr[0]<< ","  << avg << "ms\n";
+    
     /*C.sync_host();
 
     // Extract and print diagonal (emulates element-wise multiplication)

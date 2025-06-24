@@ -1,0 +1,49 @@
+vector size,iteration,time 
+GEMM time: 10 , 0.061782 ms
+GEMM time: 10 , 0.018251 ms
+GEMM time: 10 , 0.016005 ms
+GEMM time: 10 , 0.016158 ms
+GEMM time: 10 , 0.01624 ms
+GEMM time: 10 , 0.016104 ms
+GEMM time: 10 , 0.015335 ms
+GEMM time: 10 , 0.01488 ms
+GEMM time: 10 , 0.015094 ms
+GEMM time: 10 , 0.015266 ms
+GEMM time: 10 , 0.016036 ms
+10,0.0159369ms
+GEMM time: 100 , 0.017526 ms
+GEMM time: 100 , 0.016867 ms
+GEMM time: 100 , 0.01757 ms
+GEMM time: 100 , 0.017423 ms
+GEMM time: 100 , 0.017558 ms
+GEMM time: 100 , 0.017752 ms
+GEMM time: 100 , 0.017254 ms
+GEMM time: 100 , 0.017506 ms
+GEMM time: 100 , 0.017045 ms
+GEMM time: 100 , 0.017508 ms
+GEMM time: 100 , 0.016969 ms
+100,0.0173452ms
+GEMM time: 1000 , 0.096143 ms
+GEMM time: 1000 , 0.087457 ms
+GEMM time: 1000 , 0.085731 ms
+GEMM time: 1000 , 0.090322 ms
+GEMM time: 1000 , 0.091258 ms
+GEMM time: 1000 , 0.086431 ms
+GEMM time: 1000 , 0.08303 ms
+GEMM time: 1000 , 0.089793 ms
+GEMM time: 1000 , 0.084116 ms
+GEMM time: 1000 , 0.087195 ms
+GEMM time: 1000 , 0.087182 ms
+1000,0.0872515ms
+GEMM time: 10000 , 0.653234 ms
+GEMM time: 10000 , 0.659223 ms
+GEMM time: 10000 , 0.650619 ms
+GEMM time: 10000 , 0.666046 ms
+GEMM time: 10000 , 0.641482 ms
+GEMM time: 10000 , 0.64966 ms
+GEMM time: 10000 , 0.647834 ms
+GEMM time: 10000 , 0.667442 ms
+GEMM time: 10000 , 0.651514 ms
+GEMM time: 10000 , 0.650805 ms
+GEMM time: 10000 , 0.644351 ms
+10000,0.652898ms
