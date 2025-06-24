@@ -22,7 +22,10 @@ To evaluate the effectiveness of Tensor Cores and bitwise operations on GPUs usi
 
 ## Results
 The compute time is measured for all three cases for 10 iterations each and the average is calculated. 
+
+
 ![Results](https://github.com/gopalkulkarni-123/BitWiseOperationsGPU/blob/master/Images/Screenshot%20from%202025-06-24%2013-33-10.png)
+
 
 | Vector Length     | CUTLASS (AND) | CUDA (AND) | Bit Packing (AND) | CUDA (OR) | Bit Packing (OR) |
 |------------------:|---------------:|------------:|--------------------:|-----------:|-------------------:|
@@ -32,3 +35,6 @@ The compute time is measured for all three cases for 10 iterations each and the 
 | 10000 elements    | 0.6580 ms      | 0.0121 ms   | 0.0059 ms           | 0.0121 ms  | 0.0057 ms          |
 | 100000 elements   | —              | 0.0457 ms   | 0.0234 ms           | 0.0497 ms  | 0.0238 ms          |
 
+
+## Conclusion
+As observed from the results, Bit Packing is the most efficient method for performing both AND and OR operations on vectors of all tested sizes. It consistently outperforms both naive CUDA and CUTLASS implementations. While naive CUDA performs acceptably for small to medium vectors, it scales less effectively than Bit Packing. CUTLASS, designed for matrix-heavy workloads, is ill-suited for element-wise operations and should be avoided for such tasks unless batch-level tensor operations are required.
