@@ -37,4 +37,6 @@ The compute time is measured for all three cases for 10 iterations each and the 
 
 
 ## Conclusion
-As observed from the results, Bit Packing is the most efficient method for performing both AND and OR operations on vectors of all tested sizes. It consistently outperforms both naive CUDA and CUTLASS implementations. While naive CUDA performs acceptably for small to medium vectors, it scales less effectively than Bit Packing. CUTLASS, designed for matrix-heavy workloads, is ill-suited for element-wise operations and should be avoided for such tasks unless batch-level tensor operations are required.
+As observed from the results, Bit Packing is the most efficient method for performing both AND and OR operations on vectors of all tested sizes. It consistently outperforms both naive CUDA and CUTLASS implementations. While naive CUDA performs acceptably for small to medium vectors, it scales less effectively than Bit Packing.
+
+CUTLASS, designed for matrix-heavy workloads, is ill-suited for element-wise operations and should be avoided for such tasks unless batch-level tensor operations are required. Its performance is significantly worse primarily because it computes a full matrix multiplication, including non-diagonal elements, which are discarded in the final result. This leads to substantial unnecessary computation, especially for large vectors, where only the diagonal elements (i.e., pairwise AND or OR results) are actually needed.
