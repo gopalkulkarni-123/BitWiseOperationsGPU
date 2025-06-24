@@ -16,7 +16,19 @@ CUTLASS, which stands for CUDA Templates for Linear Algebra Subroutines, is an o
 Bit packing is a technique used to store multiple smaller data values within a single larger data type by tightly organising bits, thereby reducing memory usage and improving data transfer efficiency. Instead of allocating a full byte or word for each value, bit packing assigns only the minimum number of bits necessary to represent each element, fitting several values into a single integer or memory word. This is particularly useful when working with binary or low-precision data such as boolean flags, binary masks, or quantised values in machine learning and graphics. While bit packing can greatly reduce memory bandwidth and storage requirements, it often requires additional computation to extract and manipulate individual values, typically involving bitwise operations like shifts and masks. It is commonly used in applications where large volumes of small data need to be processed efficiently, including compression algorithms, cryptography, and GPU-accelerated computing.
 
 ## Method
-To test the effectiveness of tensor cores and bitwise operations on GPUs with bit-packed representations, a baseline example is used as a reference. For all three experiments, two vectors of logarithmically increasing lengths are used, starting from 10 to 100000, and bitwise operations are performed between them. The computation time is measured and compared with the other cases. 
-Tensor cores are very specifically designed to perform matrix multiplications and additions, making the element-wise operations tricky. To leverage the tensor cores, the CUTLASS library is used and to perform bitwise operations (AND in particular), an outer product of the two vectors is performed, and the diagonal elements of the resultant are considered as the result.
+To evaluate the effectiveness of Tensor Cores and bitwise operations on GPUs using bit-packed representations, a baseline CUDA kernel performing standard bitwise AND and OR operations is used as a reference. The experiments involve two input vectors with logarithmically increasing lengths, ranging from 10 to 100000 elements, on which element-wise bitwise operations are performed. The computation time is recorded and compared across different approaches. Since Tensor Cores are specifically optimized for matrix multiplication and addition, performing element-wise operations such as bitwise AND directly is not straightforward. To utilize Tensor Cores for this purpose, the CUTLASS library is employed. In this approach, the outer product of the two vectors is computed using matrix multiplication, and the diagonal elements of the resulting matrix are extracted to approximate the element-wise bitwise AND operation. The data type used for the matrix product in this method is `int8_t`, allowing compatibility with Tensor Core operations and bitwise logic.
 
 ![Outer product](https://github.com/gopalkulkarni-123/BitWiseOperationsGPU/blob/master/Images/Screenshot%20from%202025-06-24%2012-09-34.png)
+
+##Results
+The compute time is measured for all three cases for 10 iterations each and the average is calculated. 
+![Results](https://github.com/gopalkulkarni-123/BitWiseOperationsGPU/blob/master/Images/Screenshot%20from%202025-06-24%2013-33-10.png)
+
+| Vector Length     | CUTLASS (AND) | CUDA (AND) | Bit Packing (AND) | CUDA (OR) | Bit Packing (OR) |
+|------------------:|---------------:|------------:|--------------------:|-----------:|-------------------:|
+| 10 elements       | 0.0162 ms      | 0.0092 ms   | 0.0060 ms           | 0.0099 ms  | 0.0060 ms          |
+| 100 elements      | 0.0173 ms      | 0.0089 ms   | 0.0057 ms           | 0.0087 ms  | 0.0057 ms          |
+| 1000 elements     | 0.0872 ms      | 0.0089 ms   | 0.0056 ms           | 0.0088 ms  | 0.0058 ms          |
+| 10000 elements    | 0.6580 ms      | 0.0121 ms   | 0.0059 ms           | 0.0121 ms  | 0.0057 ms          |
+| 100000 elements   | —              | 0.0457 ms   | 0.0234 ms           | 0.0497 ms  | 0.0238 ms          |
+
