@@ -7,4 +7,4 @@ Tensor Cores are specialised hardware units integrated into NVIDIA GPUs, designe
 
 ![Tensor core](https://github.com/gopalkulkarni-123/BitWiseOperationsGPU/blob/master/Images/tesnor_core_diagram.png)
 
-
+Tensor Cores operate by accelerating the fused multiply-add (FMA) operation on small matrices, typically of fixed tile sizes such as 4 by 4, 8 by 8, or larger, depending on the GPU architecture. They take three matrices A, B, and C and compute D equals A multiplied by B plus C in a single instruction, significantly reducing latency and increasing throughput. These operations are executed using mixed precision, where inputs may be in lower precision formats like FP16, BF16, or INT8 to enhance speed and efficiency, while accumulation is typically performed in higher precision, such as FP32, to maintain numerical accuracy. By processing multiple matrix elements in parallel at the hardware level, Tensor Cores deliver substantial computational density, making them especially well suited for the matrix-heavy workloads common in AI, graphics, and scientific computing.
